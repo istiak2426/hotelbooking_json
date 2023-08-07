@@ -1,14 +1,21 @@
 const express = require("express");
-const Router = require("express");
-const serverless = require("serverless-http");
-const api = express();
+const cors = require("cors");
+const data = require("./sample.json");
+const app = express();
 
-const router = Router();
-router.get('/hello', (req, res) => res.send('Hello World!'));
+app.use(express.json());
+app.use(cors());
 
-api.use('/api/', router);
 
-export const handler = serverless(api);
+app.get('/', (req, res) => res.send(data));
+
+app.listen(3000, () => {
+    console.log("Server Started at 3000");
+  })
+
+
+
+
 
 
 
